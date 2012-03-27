@@ -4,6 +4,7 @@
 #include "ui_mainwindow.h"
 #include "database.h"
 #include "about.h"
+#include "preferences.h"
 
 
 static Database db;
@@ -36,6 +37,13 @@ void MainWindow::on_action_Start_triggered(bool checked)
 void MainWindow::on_action_About_triggered()
 {
     AboutDialog dlg;
+    dlg.setModal(false);
+    dlg.exec();
+}
+
+void MainWindow::on_action_Prefences_triggered()
+{
+    PreferencesDialog dlg;
     dlg.setModal(false);
     dlg.exec();
 }
