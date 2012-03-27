@@ -1,5 +1,5 @@
 *.o
 csv2sql
 Makefile
-moc_mainwindow.cpp
+moc_*.cpp
 ui_mainwindow.h
