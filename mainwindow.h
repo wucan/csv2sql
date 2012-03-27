@@ -18,6 +18,8 @@ public:
 private slots:
     void on_action_Start_triggered(bool checked);
 
+    void on_action_About_triggered();
+
 private:
     Ui::MainWindow *ui;
 };

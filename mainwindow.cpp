@@ -3,6 +3,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "database.h"
+#include "about.h"
 
 
 static Database db;
@@ -30,4 +31,11 @@ void MainWindow::on_action_Start_triggered(bool checked)
         db.closeDatabase();
         ui->action_Start->setIcon(QIcon(":/images/start"));
     }
+}
+
+void MainWindow::on_action_About_triggered()
+{
+    AboutDialog dlg;
+    dlg.setModal(false);
+    dlg.exec();
 }
