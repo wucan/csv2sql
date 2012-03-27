@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql
+QT       += core gui sql network xml
 
 TARGET = csv2sql
 TEMPLATE = app
@@ -12,9 +12,11 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    database.cpp
+    database.cpp \
+    weathersource.cpp
 
 HEADERS  += mainwindow.h \
-    database.h
+    database.h \
+    weathersource.h
 
 FORMS    += mainwindow.ui
