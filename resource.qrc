@@ -2,5 +2,6 @@
     <qresource prefix="/images">
         <file alias="exit">images/exit.svg</file>
         <file alias="about">images/about.svg</file>
+        <file alias="preferences">images/preferences.svg</file>
     </qresource>
 </RCC>
