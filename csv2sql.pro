@@ -15,15 +15,18 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     database.cpp \
     weathersource.cpp \
-    about.cpp
+    about.cpp \
+    preferences.cpp
 
 HEADERS  += mainwindow.h \
     database.h \
     weathersource.h \
-    about.h
+    about.h \
+    preferences.h
 
 FORMS    += mainwindow.ui \
-    about.ui
+    about.ui \
+    preferences.ui
 
 RESOURCES += \
     resource.qrc
