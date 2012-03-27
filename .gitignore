@@ -2,4 +2,5 @@
 csv2sql
 Makefile
 moc_*.cpp
+qrc_*.cpp
 ui_mainwindow.h
