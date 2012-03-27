@@ -7,7 +7,11 @@
 
 Database::Database()
 {
-    db.close();
+}
+
+Database::~Database()
+{
+	closeDatabase();
 }
 
 bool Database::checkDatabase()
@@ -61,4 +65,10 @@ bool Database::openDatabase()
         qDebug() << " " << rec.fieldName(i);
 
     return true;
+}
+
+void Database::closeDatabase()
+{
+    if (db.isOpen())
+        db.close();
 }

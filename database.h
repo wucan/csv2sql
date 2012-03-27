@@ -8,8 +8,10 @@ class Database
 {
 public:
     Database();
+    ~Database();
 
     bool openDatabase();
+    void closeDatabase();
 
 private:
     bool checkDatabase();
