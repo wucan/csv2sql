@@ -1,0 +1,5 @@
+*.o
+csv2sql
+Makefile
+moc_mainwindow.cpp
+ui_mainwindow.h
