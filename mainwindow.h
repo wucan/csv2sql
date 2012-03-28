@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QTimer>
+#include <QSystemTrayIcon>
 
 #include "weathersource.h"
 
@@ -22,6 +23,14 @@ public:
     void startCollectWeather();
     void stopCollectWeather();
     
+private:
+    void createActions();
+    void createTrayIcon();
+    void setVisible(bool visible);
+
+protected:
+	void closeEvent(QCloseEvent *event);
+
 private slots:
     void on_action_Start_triggered(bool checked);
 
@@ -32,9 +41,20 @@ private slots:
     void weather_timer_timeout();
     void weather_updated(WeatherInfo &info);
 
+    void iconActivated(QSystemTrayIcon::ActivationReason reason);
+    void messageClicked();
+
 private:
     Ui::MainWindow *ui;
     QTimer weather_timer;
+
+    QAction *minimizeAction;
+    QAction *maximizeAction;
+    QAction *restoreAction;
+    QAction *quitAction;
+
+    QSystemTrayIcon *trayIcon;
+    QMenu *trayIconMenu;
 };
 
 #endif // MAINWINDOW_H
