@@ -17,14 +17,16 @@ SOURCES += main.cpp\
     weathersource.cpp \
     about.cpp \
     preferences.cpp \
-    csv.cpp
+    csv.cpp \
+    csv2sqlworker.cpp
 
 HEADERS  += mainwindow.h \
     database.h \
     weathersource.h \
     about.h \
     preferences.h \
-    csv.h
+    csv.h \
+    csv2sqlworker.h
 
 FORMS    += mainwindow.ui \
     about.ui \
