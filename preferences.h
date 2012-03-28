@@ -6,6 +6,21 @@
 #include "ui_preferences.h"
 
 
+class SettingsData {
+private:
+    SettingsData();
+
+public:
+    static SettingsData & inst();
+
+    QString csv_path;
+    QString csv_interval;
+    QString db_host;
+    QString db_name;
+    QString db_user;
+    QString db_password;
+};
+
 class PreferencesDialog : public QDialog
 {
     Q_OBJECT
