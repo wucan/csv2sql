@@ -12,7 +12,7 @@
 #include "csv2sqlworker.h"
 
 
-static Database db;
+Database db;
 static WeatherSource weather_src;
 static Csv2SqlWorker worker;
 
