@@ -72,3 +72,10 @@ void Database::closeDatabase()
     if (db.isOpen())
         db.close();
 }
+
+bool Database::insertRecord(CSVRecord &csv_rec)
+{
+    /* TODO */
+
+    return true;
+}
