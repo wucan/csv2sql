@@ -75,7 +75,18 @@ void Database::closeDatabase()
 
 bool Database::insertRecord(CSVRecord &csv_rec)
 {
-    /* TODO */
+    QSqlQuery query;
+    query.prepare("INSERT INTO entrance (Date, Time, Site, Store, InCount, OutCount) "
+                  "VALUES (?, ?, ?, ?, ?, ?)");
+    query.addBindValue(csv_rec.date);
+    query.addBindValue(csv_rec.time);
+    query.addBindValue(csv_rec.site);
+    query.addBindValue(csv_rec.store);
+    query.addBindValue(csv_rec.in);
+    query.addBindValue(csv_rec.out);
+    if (!query.exec()) {
+        qWarning() << query.lastError().text();
+    }
 
     return true;
 }
