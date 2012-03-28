@@ -15,6 +15,8 @@ Csv2SqlWorker::Csv2SqlWorker(QObject *parent) :
     QThread(parent)
 {
     quit = false;
+    busy = false;
+    idle = false;
 }
 
 Csv2SqlWorker::~Csv2SqlWorker()
@@ -32,7 +34,15 @@ void Csv2SqlWorker::run()
         sem.acquire();
         if (quit)
             break;
+        mutex.lock();
+        if (idle)
+            continue;
+        busy = true;
+        mutex.unlock();
         scaning();
+        mutex.lock();
+        busy = false;
+        mutex.unlock();
     }
 }
 
@@ -47,6 +57,16 @@ void Csv2SqlWorker::requestWorking(const QString & path)
     sem.release();
 }
 
+void Csv2SqlWorker::cancelWorking()
+{
+    mutex.lock();
+    if (busy) {
+        idle = true;
+    }
+    mutex.unlock();
+    /* TODO: */
+}
+
 void Csv2SqlWorker::scaning()
 {
     QDir dir(path);
@@ -59,6 +79,10 @@ void Csv2SqlWorker::scaning()
         qDebug() << qPrintable(QString("%1 %2").arg(fileInfo.size(), 10)
                                .arg(fileInfo.fileName()));
         processCsvFile(fileInfo.filePath());
+        mutex.lock();
+        if (idle)
+            return;
+        mutex.unlock();
     }
 }
 

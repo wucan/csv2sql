@@ -3,6 +3,7 @@
 
 #include <QThread>
 #include <QSemaphore>
+#include <QMutex>
 
 
 class Csv2SqlWorker : public QThread
@@ -14,6 +15,16 @@ public:
 
     void run();
     void requestWorking(const QString & path);
+    void cancelWorking();
+    void resetState() {
+        mutex.lock();
+        busy = false;
+        idle = false;
+        mutex.unlock();
+    }
+    bool isBusy() {
+        return busy;
+    }
 
 private:
     void scaning();
@@ -27,6 +38,10 @@ private:
     QSemaphore sem;
     bool quit;
     QString path;
+
+    QMutex mutex;
+    bool busy;
+    bool idle;
 };
 
 #endif // CSV2SQLWORKER_H

@@ -50,6 +50,9 @@ void MainWindow::on_action_Start_triggered(bool checked)
         startWork();
     } else {
         qDebug() << "stop ...";
+        if (worker.isBusy()) {
+            worker.cancelWorking();
+        }
         db.closeDatabase();
         ui->action_Start->setIcon(QIcon(":/images/start"));
         stopCollectWeather();
@@ -104,6 +107,7 @@ void MainWindow::directoryChanged(const QString &path)
 
 void MainWindow::startWork()
 {
+    worker.resetState();
     worker.requestWorking(SettingsData::inst().csv_path);
 
     fs_watcher.addPath(SettingsData::inst().csv_path);
