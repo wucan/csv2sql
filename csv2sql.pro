@@ -16,13 +16,15 @@ SOURCES += main.cpp\
     database.cpp \
     weathersource.cpp \
     about.cpp \
-    preferences.cpp
+    preferences.cpp \
+    csv.cpp
 
 HEADERS  += mainwindow.h \
     database.h \
     weathersource.h \
     about.h \
-    preferences.h
+    preferences.h \
+    csv.h
 
 FORMS    += mainwindow.ui \
     about.ui \
