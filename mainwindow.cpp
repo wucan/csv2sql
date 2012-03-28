@@ -9,10 +9,12 @@
 #include "weathersource.h"
 #include "about.h"
 #include "preferences.h"
+#include "csv2sqlworker.h"
 
 
 static Database db;
 static WeatherSource weather_src;
+static Csv2SqlWorker worker;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -97,10 +99,13 @@ void MainWindow::stopCollectWeather()
 
 void MainWindow::directoryChanged(const QString &path)
 {
+    worker.requestWorking(path);
 }
 
 void MainWindow::startWork()
 {
+    worker.requestWorking(SettingsData::inst().csv_path);
+
     fs_watcher.addPath(SettingsData::inst().csv_path);
     connect(&fs_watcher, SIGNAL(directoryChanged(const QString &)), this, SLOT(directoryChanged(const QString &)));
 }
