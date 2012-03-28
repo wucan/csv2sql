@@ -19,8 +19,7 @@ PreferencesDialog::PreferencesDialog()
     /*
      * restore settings
      */
-    QSettings settings(QSettings::IniFormat, QSettings::UserScope,
-                       "adidas", "csv2sql");
+    QSettings settings("csv2sql.ini", QSettings::IniFormat);
     settings.beginGroup("csv");
     ui.lineEdit_csv_path->setText(settings.value("path", QCoreApplication::applicationDirPath()).toString());
     ui.lineEdit_csv_interval->setText(settings.value("interval", 10).toString());
@@ -43,8 +42,7 @@ void PreferencesDialog::ok()
     /*
      * store settings
      */
-    QSettings settings(QSettings::IniFormat, QSettings::UserScope,
-                       "adidas", "csv2sql");
+    QSettings settings("csv2sql.ini", QSettings::IniFormat);
     settings.beginGroup("csv");
     settings.setValue("path", ui.lineEdit_csv_path->text());
     settings.setValue("interval", ui.lineEdit_csv_interval->text());
