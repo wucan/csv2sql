@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QTimer>
 #include <QSystemTrayIcon>
+#include <QFileSystemWatcher>
 
 #include "weathersource.h"
 
@@ -22,6 +23,8 @@ public:
 
     void startCollectWeather();
     void stopCollectWeather();
+    void startWork();
+    void stopWork();
     
 private:
     void createActions();
@@ -44,6 +47,8 @@ private slots:
     void iconActivated(QSystemTrayIcon::ActivationReason reason);
     void messageClicked();
 
+    void directoryChanged(const QString & path);
+
 private:
     Ui::MainWindow *ui;
     QTimer weather_timer;
@@ -55,6 +60,8 @@ private:
 
     QSystemTrayIcon *trayIcon;
     QMenu *trayIconMenu;
+
+    QFileSystemWatcher fs_watcher;
 };
 
 #endif // MAINWINDOW_H

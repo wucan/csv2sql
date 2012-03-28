@@ -45,11 +45,13 @@ void MainWindow::on_action_Start_triggered(bool checked)
         db.openDatabase();
         ui->action_Start->setIcon(QIcon(":/images/stop"));
         startCollectWeather();
+        startWork();
     } else {
         qDebug() << "stop ...";
         db.closeDatabase();
         ui->action_Start->setIcon(QIcon(":/images/start"));
         stopCollectWeather();
+        stopWork();
     }
 }
 
@@ -91,6 +93,22 @@ void MainWindow::startCollectWeather()
 void MainWindow::stopCollectWeather()
 {
     weather_timer.stop();
+}
+
+void MainWindow::directoryChanged(const QString &path)
+{
+}
+
+void MainWindow::startWork()
+{
+    fs_watcher.addPath(SettingsData::inst().csv_path);
+    connect(&fs_watcher, SIGNAL(directoryChanged(const QString &)), this, SLOT(directoryChanged(const QString &)));
+}
+
+void MainWindow::stopWork()
+{
+    disconnect(&fs_watcher, SIGNAL(directoryChanged(const QString &)), this, SLOT(directoryChanged(const QString &)));
+    fs_watcher.removePaths(fs_watcher.directories());
 }
 
 void MainWindow::createActions()
