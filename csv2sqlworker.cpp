@@ -73,8 +73,12 @@ void Csv2SqlWorker::processCsvFile(const QString csv_file)
     CSVSimpleReader csv(&f);
     QStringList sl = csv.parseLine();
     while (!sl.isEmpty()) {
-        CSVRecord csv_rec(sl);
-        db.insertRecord(csv_rec);
+        if (sl.size() == CSVRecord::Columns) {
+            CSVRecord csv_rec(sl);
+            db.insertRecord(csv_rec);
+        } else {
+            qWarning() << "invalidate csv record: " << sl;
+        }
         sl = csv.parseLine();
     }
 

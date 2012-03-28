@@ -6,6 +6,9 @@
 
 class CSVRecord {
 public:
+    static const int Columns = 6;
+
+public:
     CSVRecord(const QStringList &sl) {
         date = sl.at(0);
         time = sl.at(1);
