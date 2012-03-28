@@ -33,6 +33,9 @@ public:
         return weather_info;
     }
 
+signals:
+    void updated(WeatherInfo &info);
+
 private slots:
     void replyFinished(QNetworkReply *reply);
 

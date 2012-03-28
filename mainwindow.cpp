@@ -58,8 +58,14 @@ void MainWindow::weather_timer_timeout()
     weather_src.update();
 }
 
+void MainWindow::weather_updated(WeatherInfo &info)
+{
+    ui->label_google_weather->setText(info.info());
+}
+
 void MainWindow::startCollectWeather()
 {
+    connect(&weather_src, SIGNAL(updated(WeatherInfo&)), this, SLOT(weather_updated(WeatherInfo&)));
     weather_timer_timeout();
 
     weather_timer.setInterval(SettingsData::inst().csv_interval.toInt() * 60 * 1000);

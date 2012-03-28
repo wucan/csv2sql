@@ -65,4 +65,7 @@ void WeatherSource::replyFinished(QNetworkReply *reply)
     }
 
     reply->deleteLater();
+
+    /* raise signal */
+    emit updated(weather_info);
 }

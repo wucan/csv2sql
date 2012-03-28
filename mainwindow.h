@@ -4,6 +4,9 @@
 #include <QMainWindow>
 #include <QTimer>
 
+#include "weathersource.h"
+
+
 namespace Ui {
 class MainWindow;
 }
@@ -27,6 +30,7 @@ private slots:
     void on_action_Prefences_triggered();
 
     void weather_timer_timeout();
+    void weather_updated(WeatherInfo &info);
 
 private:
     Ui::MainWindow *ui;
