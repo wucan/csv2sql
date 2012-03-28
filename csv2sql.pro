@@ -18,7 +18,8 @@ SOURCES += main.cpp\
     about.cpp \
     preferences.cpp \
     csv.cpp \
-    csv2sqlworker.cpp
+    csv2sqlworker.cpp \
+    csvsimplereader.cpp
 
 HEADERS  += mainwindow.h \
     database.h \
@@ -26,7 +27,9 @@ HEADERS  += mainwindow.h \
     about.h \
     preferences.h \
     csv.h \
-    csv2sqlworker.h
+    csv2sqlworker.h \
+    csvreader.h \
+    csvsimplereader.h
 
 FORMS    += mainwindow.ui \
     about.ui \
