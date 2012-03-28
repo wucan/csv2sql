@@ -88,6 +88,13 @@
         </property>
        </spacer>
       </item>
+      <item row="1" column="2">
+       <widget class="QPushButton" name="pushButton_csv_path_browse">
+        <property name="text">
+         <string>Browse...</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </widget>

@@ -34,6 +34,8 @@ private:
 private slots:
     void ok();
 
+    void on_pushButton_csv_path_browse_clicked();
+
 public slots:
     virtual void close();
 };

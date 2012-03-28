@@ -1,5 +1,6 @@
 #include <QPushButton>
 #include <QSettings>
+#include <QFileDialog>
 
 #include "preferences.h"
 
@@ -83,4 +84,14 @@ void PreferencesDialog::ok()
     settings.endGroup();
 
     done(0);
+}
+
+void PreferencesDialog::on_pushButton_csv_path_browse_clicked()
+{
+    QString dir = QFileDialog::getExistingDirectory(this, tr("Choose CSV Directory"),
+        SettingsData::inst().csv_path, QFileDialog::DontResolveSymlinks);
+    if (!dir.isNull()) {
+        SettingsData::inst().csv_path = dir;
+        ui.lineEdit_csv_path->setText(dir);
+    }
 }
