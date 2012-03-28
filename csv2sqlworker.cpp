@@ -77,4 +77,7 @@ void Csv2SqlWorker::processCsvFile(const QString csv_file)
         db.insertRecord(csv_rec);
         sl = csv.parseLine();
     }
+
+    /* at last delete the csv file! */
+    QFile::remove(csv_file);
 }
