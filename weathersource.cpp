@@ -5,6 +5,7 @@
 #include <QDomDocument>
 
 #include "weathersource.h"
+#include "preferences.h"
 
 
 static QNetworkAccessManager *manager;
@@ -24,7 +25,7 @@ WeatherSource::~WeatherSource()
 
 void WeatherSource::update()
 {
-    manager->get(QNetworkRequest((QUrl("http://www.google.com/ig/api?weather=BeiJing"))));
+    manager->get(QNetworkRequest((QUrl("http://www.google.com/ig/api?weather=" + SettingsData::inst().city))));
 }
 
 void WeatherSource::replyFinished(QNetworkReply *reply)
