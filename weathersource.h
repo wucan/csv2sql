@@ -29,6 +29,9 @@ public:
     ~WeatherSource();
 
     void update();
+    WeatherInfo & getWeatherInfo() {
+        return weather_info;
+    }
 
 private slots:
     void replyFinished(QNetworkReply *reply);
