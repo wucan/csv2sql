@@ -11,6 +11,9 @@ SettingsData::SettingsData()
      * restore settings
      */
     QSettings settings("csv2sql.ini", QSettings::IniFormat);
+    settings.beginGroup("gen");
+    city = settings.value("city", "BeiJing").toString();
+    settings.endGroup();
     settings.beginGroup("csv");
     csv_path = settings.value("path", QCoreApplication::applicationDirPath()).toString();
     csv_interval = settings.value("interval", 10).toString();
@@ -45,6 +48,7 @@ PreferencesDialog::PreferencesDialog()
     /*
      * restore settings
      */
+    ui.lineEdit_city->setText(SettingsData::inst().city);
     ui.lineEdit_csv_path->setText(SettingsData::inst().csv_path);
     ui.lineEdit_csv_interval->setText(SettingsData::inst().csv_interval);
     ui.lineEdit_db_host->setText(SettingsData::inst().db_host);
@@ -71,6 +75,10 @@ void PreferencesDialog::ok()
      * store settings
      */
     QSettings settings("csv2sql.ini", QSettings::IniFormat);
+    settings.beginGroup("gen");
+    settings.setValue("city", SettingsData::inst().city);
+    settings.endGroup();
+
     settings.beginGroup("csv");
     settings.setValue("path", SettingsData::inst().csv_path);
     settings.setValue("interval", SettingsData::inst().csv_interval);

@@ -13,6 +13,7 @@ private:
 public:
     static SettingsData & inst();
 
+    QString city;
     QString csv_path;
     QString csv_interval;
     QString db_host;
