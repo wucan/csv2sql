@@ -10,6 +10,7 @@
 #include "about.h"
 #include "preferences.h"
 #include "csv2sqlworker.h"
+#include "registerdialog.h"
 
 
 Database db;
@@ -186,4 +187,11 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::on_action_Iconize_triggered()
 {
     hide();
+}
+
+void MainWindow::on_action_Register_triggered()
+{
+    RegisterDialog dialog(this);
+    dialog.setModal(false);
+    dialog.exec();
 }

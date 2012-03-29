@@ -70,6 +70,7 @@
      <string>&amp;Edit</string>
     </property>
     <addaction name="action_Prefences"/>
+    <addaction name="action_Register"/>
    </widget>
    <widget class="QMenu" name="menu_Help">
     <property name="title">
@@ -144,6 +145,11 @@
    </property>
    <property name="toolTip">
     <string>Iconize</string>
+   </property>
+  </action>
+  <action name="action_Register">
+   <property name="text">
+    <string>&amp;Register</string>
    </property>
   </action>
  </widget>

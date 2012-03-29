@@ -51,6 +51,8 @@ private slots:
 
     void on_action_Iconize_triggered();
 
+    void on_action_Register_triggered();
+
 private:
     Ui::MainWindow *ui;
     QTimer weather_timer;

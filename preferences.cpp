@@ -24,6 +24,10 @@ SettingsData::SettingsData()
     db_user = settings.value("user", "adidas").toString();
     db_password = settings.value("password", "adidas").toString();
     settings.endGroup();
+    settings.beginGroup("reg");
+    sn = settings.value("sn", "").toString();
+    rn = settings.value("rn", "").toString();
+    settings.endGroup();
 }
 
 SettingsData & SettingsData::inst()

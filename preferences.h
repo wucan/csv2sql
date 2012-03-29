@@ -20,6 +20,9 @@ public:
     QString db_name;
     QString db_user;
     QString db_password;
+
+    QString sn;
+    QString rn;
 };
 
 class PreferencesDialog : public QDialog
