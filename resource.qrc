@@ -7,5 +7,7 @@
         <file alias="stop">images/stop.svg</file>
         <file alias="logo">images/logo.svg</file>
         <file alias="iconize">images/iconize.svg</file>
+        <file alias="lock">images/lock.png</file>
+        <file alias="unlock">images/unlock.png</file>
     </qresource>
 </RCC>
