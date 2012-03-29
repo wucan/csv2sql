@@ -6,5 +6,6 @@
         <file alias="start">images/start.svg</file>
         <file alias="stop">images/stop.svg</file>
         <file alias="logo">images/logo.svg</file>
+        <file alias="iconize">images/iconize.svg</file>
     </qresource>
 </RCC>
