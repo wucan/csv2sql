@@ -22,6 +22,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    setWindowTitle("CSV2SQL");
+    setWindowIcon(QIcon(":/images/logo"));
 
     /*
      * create tray icon
