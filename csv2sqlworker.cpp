@@ -22,6 +22,7 @@ Csv2SqlWorker::Csv2SqlWorker(QObject *parent) :
 Csv2SqlWorker::~Csv2SqlWorker()
 {
     if (isRunning()) {
+        cancelWorking();
         quit = true;
         sem.release();
         wait();
