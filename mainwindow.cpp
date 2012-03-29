@@ -182,3 +182,8 @@ void MainWindow::closeEvent(QCloseEvent *event)
         event->ignore();
     }
 }
+
+void MainWindow::on_action_Iconize_triggered()
+{
+    hide();
+}

@@ -49,6 +49,8 @@ private slots:
 
     void directoryChanged(const QString & path);
 
+    void on_action_Iconize_triggered();
+
 private:
     Ui::MainWindow *ui;
     QTimer weather_timer;

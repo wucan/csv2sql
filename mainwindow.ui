@@ -90,6 +90,7 @@
    </attribute>
    <addaction name="action_Start"/>
    <addaction name="action_Prefences"/>
+   <addaction name="action_Iconize"/>
    <addaction name="action_Exit"/>
    <addaction name="action_About"/>
   </widget>
@@ -131,6 +132,18 @@
    </property>
    <property name="text">
     <string>&amp;Start</string>
+   </property>
+  </action>
+  <action name="action_Iconize">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/images/iconize</normaloff>:/images/iconize</iconset>
+   </property>
+   <property name="text">
+    <string>Iconize</string>
+   </property>
+   <property name="toolTip">
+    <string>Iconize</string>
    </property>
   </action>
  </widget>
