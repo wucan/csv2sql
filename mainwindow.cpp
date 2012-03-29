@@ -135,7 +135,7 @@ void MainWindow::createActions()
     connect(restoreAction, SIGNAL(triggered()), this, SLOT(showNormal()));
 
     quitAction = new QAction(tr("&Quit"), this);
-    connect(quitAction, SIGNAL(triggered()), this, SLOT(close()));
+    connect(quitAction, SIGNAL(triggered()), this, SLOT(on_action_Exit_triggered()));
 }
 
 void MainWindow::createTrayIcon()
@@ -198,4 +198,10 @@ void MainWindow::on_action_Register_triggered()
     dialog.exec();
 
     ui->action_Start->setEnabled(RegisterDialog::isRegistered());
+}
+
+void MainWindow::on_action_Exit_triggered()
+{
+    hide();
+    close();
 }
