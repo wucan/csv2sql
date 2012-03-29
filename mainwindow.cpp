@@ -165,6 +165,7 @@ void MainWindow::iconActivated(QSystemTrayIcon::ActivationReason reason)
     switch (reason) {
     case QSystemTrayIcon::Trigger:
     case QSystemTrayIcon::DoubleClick:
+        setVisible(!isVisible());
         break;
     case QSystemTrayIcon::MiddleClick:
         break;
