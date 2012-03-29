@@ -74,6 +74,7 @@ void Csv2SqlWorker::scaning()
     dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
     dir.setSorting(QDir::Time | QDir::Reversed);
 
+    dir.setNameFilters(QStringList("*.csv"));
     QFileInfoList list = dir.entryInfoList();
     for (int i = 0; i < list.size(); ++i) {
         QFileInfo fileInfo = list.at(i);
