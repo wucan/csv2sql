@@ -34,6 +34,8 @@ MainWindow::MainWindow(QWidget *parent) :
     trayIcon->setToolTip(tr("CSV2SQL"));
     trayIcon->setIcon(QIcon(":/images/logo"));
     trayIcon->show();
+
+    ui->action_Start->setEnabled(RegisterDialog::isRegistered());
 }
 
 MainWindow::~MainWindow()
@@ -194,4 +196,6 @@ void MainWindow::on_action_Register_triggered()
     RegisterDialog dialog(this);
     dialog.setModal(false);
     dialog.exec();
+
+    ui->action_Start->setEnabled(RegisterDialog::isRegistered());
 }
