@@ -82,8 +82,10 @@ void Csv2SqlWorker::scaning()
                                .arg(fileInfo.fileName()));
         processCsvFile(fileInfo.filePath());
         mutex.lock();
-        if (idle)
-            return;
+        if (idle) {
+            mutex.unlock();
+            break;
+        }
         mutex.unlock();
     }
 }
