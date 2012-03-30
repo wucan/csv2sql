@@ -107,7 +107,7 @@ void MainWindow::on_action_Prefences_triggered()
 {
     PreferencesDialog dlg;
     dlg.setModal(false);
-    if (dlg.exec()) {
+    if (dlg.exec() && ui->action_Start->isChecked()) {
         stop();
         start();
     }
