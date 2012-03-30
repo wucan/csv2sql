@@ -2,7 +2,7 @@
 #include <QTimer>
 #include <QMessageBox>
 #include <QCloseEvent>
-#include <QDesktopWidget>k
+#include <QDesktopWidget>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
