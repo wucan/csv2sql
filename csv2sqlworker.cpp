@@ -14,6 +14,8 @@ extern Database db;
 Csv2SqlWorker::Csv2SqlWorker(QObject *parent) :
     QThread(parent)
 {
+    qRegisterMetaType<WorkEvent>("WorkEvent");
+
     quit = false;
     busy = false;
     idle = false;
@@ -78,10 +80,19 @@ void Csv2SqlWorker::scaning()
 
     dir.setNameFilters(QStringList("*.csv"));
     QFileInfoList list = dir.entryInfoList();
+    if (list.size() <= 0)
+        return;
+    status.csv_files = list.size();
+    status.cur_file = NULL;
+    status.cur_percent = 1;
+    emit workProcessEvent(WorkEventBegin, &status);
     for (int i = 0; i < list.size(); ++i) {
         QFileInfo fileInfo = list.at(i);
         qDebug() << qPrintable(QString("%1 %2").arg(fileInfo.size(), 10)
                                .arg(fileInfo.fileName()));
+        status.cur_file = fileInfo.fileName();
+        status.cur_percent = 0;
+        emit workProcessEvent(WorkEventNext, &status);
         processCsvFile(fileInfo.filePath());
         mutex.lock();
         if (idle) {
@@ -90,6 +101,8 @@ void Csv2SqlWorker::scaning()
         }
         mutex.unlock();
     }
+
+    emit workProcessEvent(WorkEventEnd, &status);
 }
 
 void Csv2SqlWorker::processCsvFile(const QString csv_file)
@@ -110,6 +123,12 @@ void Csv2SqlWorker::processCsvFile(const QString csv_file)
             qWarning() << "invalidate csv record: " << sl;
         }
         sl = csv.parseLine();
+
+        float percent = csv.getPercent();
+        if (percent >= (status.cur_percent + .01)) {
+            status.cur_percent = percent;
+            emit workProcessEvent(WorkEventTick, &status);
+        }
     }
 
     /* at last delete the csv file! */
