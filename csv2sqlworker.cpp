@@ -38,8 +38,10 @@ void Csv2SqlWorker::run()
         if (quit)
             break;
         mutex.lock();
-        if (idle)
+        if (idle) {
+            mutex.unlock();
             continue;
+        }
         busy = true;
         mutex.unlock();
         scaning();
