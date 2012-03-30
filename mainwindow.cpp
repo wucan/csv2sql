@@ -232,6 +232,9 @@ void MainWindow::on_action_Register_triggered()
 
 void MainWindow::on_action_Exit_triggered()
 {
+    if (ui->action_Start->isChecked())
+        stop();
+
     hide();
     close();
 }
