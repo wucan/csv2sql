@@ -15,9 +15,12 @@ public:
     CSVSimpleReader(QIODevice *dev);
 
     virtual QStringList parseLine();
+    virtual float getPercent();
 
 private:
     QTextStream text_stream;
+    qint64 total_size;
+    qint64 cur_pos;
 };
 
 #endif // CSVSIMPLEREADER_H
