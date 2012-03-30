@@ -34,6 +34,8 @@ private:
     void createActions();
     void createTrayIcon();
     void setVisible(bool visible);
+    void start();
+    void stop();
 
 protected:
 	void closeEvent(QCloseEvent *event);

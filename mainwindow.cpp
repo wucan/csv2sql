@@ -53,32 +53,42 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::start()
+{
+    qDebug() << "start ...";
+    db.openDatabase();
+    ui->action_Start->setIcon(QIcon(":/images/stop"));
+    startCollectWeather();
+    startWork();
+}
+
+void MainWindow::stop()
+{
+    qDebug() << "stop ...";
+    if (worker.isBusy()) {
+        worker.cancelWorking();
+        connect(&worker, SIGNAL(workProcessEvent(WorkEvent,WorkStatus*)),
+                this, SLOT(workProcessEventHandler(WorkEvent,WorkStatus*)));
+        int rc = cancel_progress_dialog.exec();
+        if (rc == -1) {
+            // user canceled, force break out the working
+            worker.forceCancelWorking();
+        }
+        disconnect(&worker, SIGNAL(workProcessEvent(WorkEvent,WorkStatus*)),
+                   this, SLOT(workProcessEventHandler(WorkEvent,WorkStatus*)));
+    }
+    db.closeDatabase();
+    ui->action_Start->setIcon(QIcon(":/images/start"));
+    stopCollectWeather();
+    stopWork();
+}
+
 void MainWindow::on_action_Start_triggered(bool checked)
 {
     if (checked) {
-        qDebug() << "start ...";
-        db.openDatabase();
-        ui->action_Start->setIcon(QIcon(":/images/stop"));
-        startCollectWeather();
-        startWork();
+        start();
     } else {
-        qDebug() << "stop ...";
-        if (worker.isBusy()) {
-            worker.cancelWorking();
-            connect(&worker, SIGNAL(workProcessEvent(WorkEvent,WorkStatus*)),
-                    this, SLOT(workProcessEventHandler(WorkEvent,WorkStatus*)));
-            int rc = cancel_progress_dialog.exec();
-            if (rc == -1) {
-                // user canceled, force break out the working
-                worker.forceCancelWorking();
-            }
-            disconnect(&worker, SIGNAL(workProcessEvent(WorkEvent,WorkStatus*)),
-                       this, SLOT(workProcessEventHandler(WorkEvent,WorkStatus*)));
-        }
-        db.closeDatabase();
-        ui->action_Start->setIcon(QIcon(":/images/start"));
-        stopCollectWeather();
-        stopWork();
+        stop();
     }
 }
 
