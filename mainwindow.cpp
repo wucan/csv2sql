@@ -47,6 +47,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->action_Start->setEnabled(RegisterDialog::isRegistered());
 
     cancel_progress_dialog.setLabelText(tr("Wait for current csv file completed ..."));
+    cancel_progress_dialog.setCancelButtonText(tr("Abort and Quit"));
     cancel_progress_dialog.setModal(true);
     connect(&cancel_progress_dialog, SIGNAL(canceled()), this, SLOT(cancel_progress_diglog_canceled()));
 }

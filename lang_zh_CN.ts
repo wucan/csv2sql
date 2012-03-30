@@ -60,38 +60,44 @@
         <translation type="unfinished">注册(&amp;R)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="40"/>
-        <location filename="mainwindow.cpp" line="198"/>
+        <location filename="mainwindow.cpp" line="43"/>
+        <location filename="mainwindow.cpp" line="212"/>
         <source>CSV2SQL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="46"/>
+        <location filename="mainwindow.cpp" line="49"/>
         <source>Wait for current csv file completed ...</source>
         <translation type="unfinished">等待当前CSV文件处理完成...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="147"/>
+        <location filename="mainwindow.cpp" line="50"/>
+        <source>Abort and Quit</source>
+        <oldsource>Save and Abort</oldsource>
+        <translation type="unfinished">中断退出</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="161"/>
         <source>Mi&amp;nimize</source>
         <translation type="unfinished">最小化窗口(&amp;n)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="150"/>
+        <location filename="mainwindow.cpp" line="164"/>
         <source>Ma&amp;ximize</source>
         <translation type="unfinished">最大化窗口(&amp;x)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="153"/>
+        <location filename="mainwindow.cpp" line="167"/>
         <source>&amp;Restore</source>
         <translation type="unfinished">恢复窗口(&amp;R)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="156"/>
+        <location filename="mainwindow.cpp" line="170"/>
         <source>&amp;Quit</source>
         <translation type="unfinished">退出(&amp;Q)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="198"/>
+        <location filename="mainwindow.cpp" line="212"/>
         <source>Systray</source>
         <translation type="unfinished"></translation>
     </message>
