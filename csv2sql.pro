@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     csv.cpp \
     csv2sqlworker.cpp \
     csvsimplereader.cpp \
-    registerdialog.cpp
+    registerdialog.cpp \
+    shapedclock.cpp
 
 HEADERS  += mainwindow.h \
     database.h \
@@ -31,7 +32,8 @@ HEADERS  += mainwindow.h \
     csv2sqlworker.h \
     csvreader.h \
     csvsimplereader.h \
-    registerdialog.h
+    registerdialog.h \
+    shapedclock.h
 
 FORMS    += mainwindow.ui \
     about.ui \
