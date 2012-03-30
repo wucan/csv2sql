@@ -14,79 +14,84 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="63"/>
+        <location filename="mainwindow.ui" line="74"/>
         <source>&amp;File</source>
         <translation type="unfinished">文件(&amp;F)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="70"/>
+        <location filename="mainwindow.ui" line="81"/>
         <source>&amp;Edit</source>
         <translation type="unfinished">编辑(&amp;E)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="77"/>
+        <location filename="mainwindow.ui" line="88"/>
         <source>&amp;Help</source>
         <translation type="unfinished">帮助(&amp;H)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="105"/>
+        <location filename="mainwindow.ui" line="116"/>
         <source>E&amp;xit</source>
         <translation type="unfinished">退出(&amp;x)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="114"/>
+        <location filename="mainwindow.ui" line="125"/>
         <source>&amp;Preferences</source>
         <translation type="unfinished">设置(&amp;P)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="123"/>
+        <location filename="mainwindow.ui" line="134"/>
         <source>&amp;About</source>
         <translation type="unfinished">关于(&amp;A)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="135"/>
+        <location filename="mainwindow.ui" line="146"/>
         <source>&amp;Start</source>
         <translation type="unfinished">启动(&amp;S)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="144"/>
-        <location filename="mainwindow.ui" line="147"/>
+        <location filename="mainwindow.ui" line="155"/>
+        <location filename="mainwindow.ui" line="158"/>
         <source>Iconize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="152"/>
+        <location filename="mainwindow.ui" line="163"/>
         <source>&amp;Register</source>
         <translation type="unfinished">注册(&amp;R)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="36"/>
-        <location filename="mainwindow.cpp" line="181"/>
+        <location filename="mainwindow.cpp" line="40"/>
+        <location filename="mainwindow.cpp" line="198"/>
         <source>CSV2SQL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="130"/>
+        <location filename="mainwindow.cpp" line="46"/>
+        <source>Wait for current csv file completed ...</source>
+        <translation type="unfinished">等待当前CSV文件处理完成...</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="147"/>
         <source>Mi&amp;nimize</source>
         <translation type="unfinished">最小化窗口(&amp;n)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="133"/>
+        <location filename="mainwindow.cpp" line="150"/>
         <source>Ma&amp;ximize</source>
         <translation type="unfinished">最大化窗口(&amp;x)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="136"/>
+        <location filename="mainwindow.cpp" line="153"/>
         <source>&amp;Restore</source>
         <translation type="unfinished">恢复窗口(&amp;R)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="139"/>
+        <location filename="mainwindow.cpp" line="156"/>
         <source>&amp;Quit</source>
         <translation type="unfinished">退出(&amp;Q)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="181"/>
+        <location filename="mainwindow.cpp" line="198"/>
         <source>Systray</source>
         <translation type="unfinished"></translation>
     </message>
@@ -125,6 +130,54 @@
         <location filename="registerdialog.cpp" line="33"/>
         <source>Close</source>
         <translation type="unfinished">关闭</translation>
+    </message>
+</context>
+<context>
+    <name>ShapedClock</name>
+    <message>
+        <location filename="shapedclock.cpp" line="53"/>
+        <source>E&amp;xit</source>
+        <translation type="unfinished">退出(&amp;x)</translation>
+    </message>
+    <message>
+        <location filename="shapedclock.cpp" line="54"/>
+        <source>Ctrl+Q</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="shapedclock.cpp" line="59"/>
+        <source>Drag the clock with the left mouse button.
+Use the right mouse button to open a context menu.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="shapedclock.cpp" line="61"/>
+        <source>Shaped Analog Clock</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WorkIndicator</name>
+    <message>
+        <location filename="workindicator.cpp" line="9"/>
+        <source>E&amp;xit</source>
+        <translation type="unfinished">退出(&amp;x)</translation>
+    </message>
+    <message>
+        <location filename="workindicator.cpp" line="10"/>
+        <source>Ctrl+Q</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="workindicator.cpp" line="15"/>
+        <source>Drag the diagram with the left mouse button.
+Use the right mouse button to open a context menu.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="workindicator.cpp" line="17"/>
+        <source>Work Status Indicator</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
