@@ -8,7 +8,7 @@ QT       += core gui sql network xml
 
 TARGET = csv2sql
 TEMPLATE = app
-VERSION = 0.1
+VERSION = 0.2
 
 
 SOURCES += main.cpp\
