@@ -13,6 +13,8 @@ namespace Ui {
 class MainWindow;
 }
 
+class WorkIndicator;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -68,6 +70,8 @@ private:
     QMenu *trayIconMenu;
 
     QFileSystemWatcher fs_watcher;
+
+    WorkIndicator *indicator;
 };
 
 #endif // MAINWINDOW_H

@@ -11,6 +11,7 @@
 #include "preferences.h"
 #include "csv2sqlworker.h"
 #include "registerdialog.h"
+#include "workindicator.h"
 
 
 Database db;
@@ -24,6 +25,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle("CSV2SQL");
     setWindowIcon(QIcon(":/images/logo"));
+
+    indicator = new WorkIndicator(this);
+    ui->horizontalLayout_status->addWidget(indicator);
 
     /*
      * create tray icon
