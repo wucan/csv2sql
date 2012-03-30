@@ -2,6 +2,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QFile>
+#include <QSettings>
 
 #include "csv2sqlworker.h"
 #include "preferences.h"
@@ -20,6 +21,7 @@ Csv2SqlWorker::Csv2SqlWorker(QObject *parent) :
     busy = false;
     idle = false;
     force_idle = false;
+    need_restore = true;
 }
 
 Csv2SqlWorker::~Csv2SqlWorker()
@@ -45,7 +47,18 @@ void Csv2SqlWorker::run()
         }
         busy = true;
         mutex.unlock();
-        scaning();
+
+        /*
+         * restore work field from last working, else just scanning new files
+         */
+        if (need_restore) {
+            need_restore = false;
+            restoreWorkField();
+            sem.release();
+        } else {
+            scaning();
+        }
+
         mutex.lock();
         busy = false;
         mutex.unlock();
@@ -117,7 +130,7 @@ void Csv2SqlWorker::scaning()
     emit workProcessEvent(WorkEventEnd, &status);
 }
 
-void Csv2SqlWorker::processCsvFile(const QString csv_file)
+void Csv2SqlWorker::processCsvFile(const QString csv_file, qint64 start_pos)
 {
     QFile f(csv_file);
     if (!f.open(QIODevice::ReadWrite | QIODevice::Text)) {
@@ -126,6 +139,12 @@ void Csv2SqlWorker::processCsvFile(const QString csv_file)
     }
 
     CSVSimpleReader csv(&f);
+    if (start_pos != 0) {
+        if (!csv.seek(start_pos)) {
+            qWarning() << "Seek failed when restore work fiel!";
+            return;
+        }
+    }
     QStringList sl = csv.parseLine();
     while (!sl.isEmpty()) {
         if (sl.size() == CSVRecord::Columns) {
@@ -142,10 +161,51 @@ void Csv2SqlWorker::processCsvFile(const QString csv_file)
             emit workProcessEvent(WorkEventTick, &status);
         }
 
-        if (force_idle)
-            break;
+        if (force_idle) {
+            saveWorkField(csv_file, csv.currentPosition());
+            need_restore = true;
+            return;
+        }
     }
 
     /* at last delete the csv file! */
     QFile::remove(csv_file);
+}
+
+void Csv2SqlWorker::saveWorkField(QString file, qint64 pos)
+{
+    QSettings settings("csv2sql.ini", QSettings::IniFormat);
+    settings.beginGroup("work");
+    settings.setValue("file", file);
+    settings.setValue("pos", pos);
+    settings.endGroup();
+}
+
+void Csv2SqlWorker::restoreWorkField()
+{
+    QSettings settings("csv2sql.ini", QSettings::IniFormat);
+    settings.beginGroup("work");
+    QString file = settings.value("file", "").toString();
+    qint64 pos = settings.value("pos", 0).toInt();
+    settings.endGroup();
+    if (file != "" && pos != 0) {
+        saveWorkField("", 0);
+
+        status.csv_files = 1;
+        status.cur_file = QString::null;
+        status.cur_percent = 0;
+        status.cur_index = 0;
+        emit workProcessEvent(WorkEventBegin, &status);
+
+        status.cur_file = file;
+        status.cur_percent = 0;
+        emit workProcessEvent(WorkEventNext, &status);
+
+        processCsvFile(file, pos);
+
+        status.csv_files = 0;
+        status.cur_file = QString::null;
+        status.cur_percent = 1;
+        emit workProcessEvent(WorkEventEnd, &status);
+    }
 }

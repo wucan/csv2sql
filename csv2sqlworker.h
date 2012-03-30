@@ -47,7 +47,9 @@ public:
 
 private:
     void scaning();
-    void processCsvFile(const QString csv_file);
+    void processCsvFile(const QString csv_file, qint64 start_pos = 0);
+    void saveWorkField(QString file, qint64 pos);
+    void restoreWorkField();
 
 signals:
     void workProcessEvent(WorkEvent, WorkStatus *status);
@@ -63,6 +65,7 @@ private:
     bool busy;
     bool idle;
     bool force_idle;
+    bool need_restore;
 
 public:
     WorkStatus status;
