@@ -16,6 +16,8 @@ public:
 
     virtual QStringList parseLine();
     virtual float getPercent();
+    virtual qint64 currentPosition();
+    virtual bool seek(qint64 pos);
 
 private:
     QTextStream text_stream;

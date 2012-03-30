@@ -28,3 +28,22 @@ float CSVSimpleReader::getPercent()
 {
     return ((float)cur_pos / total_size);
 }
+
+qint64 CSVSimpleReader::currentPosition()
+{
+    return cur_pos;
+}
+
+bool CSVSimpleReader::seek(qint64 pos)
+{
+    while (true) {
+        QString line = text_stream.readLine();
+        if (line.isNull() || line.isEmpty())
+            return false;
+        cur_pos += line.size();
+        if (cur_pos == pos)
+            return true;
+        else if (cur_pos > pos)
+            return false;
+    }
+}
