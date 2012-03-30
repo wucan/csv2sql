@@ -3,8 +3,8 @@
 #include "workindicator.h"
 
 
-WorkIndicator::WorkIndicator(QWidget *parent)
-    : QWidget(parent, Qt::FramelessWindowHint | Qt::WindowSystemMenuHint)
+WorkIndicator::WorkIndicator(Csv2SqlWorker *worker, QWidget *parent)
+    : QWidget(parent, Qt::FramelessWindowHint | Qt::WindowSystemMenuHint), _worker(worker)
 {
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
@@ -19,6 +19,9 @@ WorkIndicator::WorkIndicator(QWidget *parent)
     setToolTip(tr("Drag the diagram with the left mouse button.\n"
                   "Use the right mouse button to open a context menu."));
     setWindowTitle(tr("Work Status Indicator"));
+
+    connect(_worker, SIGNAL(workProcessEvent(WorkEvent, WorkStatus*)),
+            this, SLOT(on_workProcessEvent(WorkEvent, WorkStatus*)));
 }
 
 void WorkIndicator::mousePressEvent(QMouseEvent *event)
@@ -106,3 +109,8 @@ QSize WorkIndicator::sizeHint() const
     return QSize(100, 100);
 }
 
+void WorkIndicator::on_workProcessEvent(WorkEvent event, WorkStatus *status)
+{
+    qDebug() << "event:" << event << ", files:" << status->csv_files
+             << ", cur:" << status->cur_file << ", percent:" << status->cur_percent;
+}

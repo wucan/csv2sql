@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowTitle("CSV2SQL");
     setWindowIcon(QIcon(":/images/logo"));
 
-    indicator = new WorkIndicator(this);
+    indicator = new WorkIndicator(&worker, this);
     ui->horizontalLayout_status->addWidget(indicator);
 
     /*

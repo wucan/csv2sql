@@ -3,12 +3,15 @@
 
 #include <QWidget>
 
+#include "csv2sqlworker.h"
+
+
 class WorkIndicator : public QWidget
 {
     Q_OBJECT
 
 public:
-    WorkIndicator(QWidget *parent = 0);
+    WorkIndicator(Csv2SqlWorker *worker, QWidget *parent = 0);
     QSize sizeHint() const;
 
 protected:
@@ -17,8 +20,12 @@ protected:
     void paintEvent(QPaintEvent *event);
     void resizeEvent(QResizeEvent *event);
 
+private slots:
+    void on_workProcessEvent(WorkEvent event, WorkStatus *status);
+
 private:
     QPoint dragPosition;
+    Csv2SqlWorker *_worker;
 };
 
 #endif
