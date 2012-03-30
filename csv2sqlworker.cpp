@@ -83,8 +83,9 @@ void Csv2SqlWorker::scaning()
     if (list.size() <= 0)
         return;
     status.csv_files = list.size();
-    status.cur_file = NULL;
-    status.cur_percent = 1;
+    status.cur_file = QString::null;
+    status.cur_percent = 0;
+    status.cur_index = 0;
     emit workProcessEvent(WorkEventBegin, &status);
     for (int i = 0; i < list.size(); ++i) {
         QFileInfo fileInfo = list.at(i);
@@ -100,8 +101,12 @@ void Csv2SqlWorker::scaning()
             break;
         }
         mutex.unlock();
+        status.cur_index++;
     }
 
+    status.csv_files = 0;
+    status.cur_file = QString::null;
+    status.cur_percent = 1;
     emit workProcessEvent(WorkEventEnd, &status);
 }
 

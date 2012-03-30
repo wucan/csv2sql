@@ -18,6 +18,7 @@ enum WorkEvent {
 class WorkStatus {
 public:
     int csv_files;
+    int cur_index;
     QString cur_file;
     float cur_percent;
 };
@@ -60,6 +61,7 @@ private:
     bool busy;
     bool idle;
 
+public:
     WorkStatus status;
 };
 

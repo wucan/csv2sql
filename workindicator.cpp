@@ -6,10 +6,6 @@
 WorkIndicator::WorkIndicator(Csv2SqlWorker *worker, QWidget *parent)
     : QWidget(parent, Qt::FramelessWindowHint | Qt::WindowSystemMenuHint), _worker(worker)
 {
-    QTimer *timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-    timer->start(1000);
-
     QAction *quitAction = new QAction(tr("E&xit"), this);
     quitAction->setShortcut(tr("Ctrl+Q"));
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
@@ -42,66 +38,28 @@ void WorkIndicator::mouseMoveEvent(QMouseEvent *event)
 
 void WorkIndicator::paintEvent(QPaintEvent *)
 {
-    static const QPoint hourHand[3] = {
-        QPoint(7, 8),
-        QPoint(-7, 8),
-        QPoint(0, -40)
-    };
-    static const QPoint minuteHand[3] = {
-        QPoint(7, 8),
-        QPoint(-7, 8),
-        QPoint(0, -70)
-    };
-
-    QColor hourColor(127, 0, 127);
-    QColor minuteColor(0, 127, 127, 191);
-
-    int side = qMin(width(), height());
-    QTime time = QTime::currentTime();
-
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
-    painter.translate(width() / 2, height() / 2);
-    painter.scale(side / 200.0, side / 200.0);
 
-    painter.setPen(Qt::NoPen);
-    painter.setBrush(hourColor);
+    /* draw */
+    if (_worker->status.csv_files > 0) {
+        float left_files_percent = (float)(_worker->status.cur_index + 1) / _worker->status.csv_files;
+        float one_file_percent = 1.0 / _worker->status.csv_files;
 
-    painter.save();
-    painter.rotate(30.0 * ((time.hour() + time.minute() / 60.0)));
-    painter.drawConvexPolygon(hourHand, 3);
-    painter.restore();
+        QColor filesColor(127, 0, 127);
+        QColor percentColor(0, 127, 127, 191);
+        painter.setPen(Qt::NoPen);
+        painter.setBrush(filesColor);
+        painter.drawPie(80,  0, 200, 200, 0, (1 - left_files_percent) * 360 * 16);
+        painter.setBrush(percentColor);
+        painter.drawPie(80,  0, 200, 200, (1 - left_files_percent) * 360 * 16, one_file_percent * 360 * 16);
 
-    painter.setPen(hourColor);
-
-    for (int i = 0; i < 12; ++i) {
-        painter.drawLine(88, 0, 96, 0);
-        painter.rotate(30.0);
-    }
-
-    painter.setPen(Qt::NoPen);
-    painter.setBrush(minuteColor);
-
-    painter.save();
-    painter.rotate(6.0 * (time.minute() + time.second() / 60.0));
-    painter.drawConvexPolygon(minuteHand, 3);
-    painter.restore();
-
-    painter.setPen(minuteColor);
-
-    for (int j = 0; j < 60; ++j) {
-        if ((j % 5) != 0)
-            painter.drawLine(92, 0, 96, 0);
-        painter.rotate(6.0);
+        painter.drawPie(300, 0, 200, 200, 0, (1 - _worker->status.cur_percent) * 360 * 16);
     }
 }
 
 void WorkIndicator::resizeEvent(QResizeEvent * /* event */)
 {
-    int side = qMin(width(), height());
-    QRegion maskedRegion(width() / 2 - side / 2, height() / 2 - side / 2, side,
-                         side, QRegion::Ellipse);
-    setMask(maskedRegion);
 }
 
 QSize WorkIndicator::sizeHint() const
@@ -111,6 +69,5 @@ QSize WorkIndicator::sizeHint() const
 
 void WorkIndicator::on_workProcessEvent(WorkEvent event, WorkStatus *status)
 {
-    qDebug() << "event:" << event << ", files:" << status->csv_files
-             << ", cur:" << status->cur_file << ", percent:" << status->cur_percent;
+    update();
 }
