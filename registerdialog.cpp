@@ -7,7 +7,7 @@
 RegisterDialog::RegisterDialog(QWidget *parent) :
     QDialog(parent)
 {
-    setWindowTitle("Register the Software");
+    setWindowTitle(tr("Register the Software"));
     setMinimumWidth(400);
 
     QGridLayout *root_grid_layout = new QGridLayout();
@@ -15,12 +15,12 @@ RegisterDialog::RegisterDialog(QWidget *parent) :
     QGridLayout *grid_layout = new QGridLayout();
     QGridLayout *buttons_grid_layout = new QGridLayout();
     /* SN(Serial Number) */
-    QLabel *sn_label = new QLabel("Serial Number", this);
+    QLabel *sn_label = new QLabel(tr("Serial Number"), this);
     sn_lineedit = new QLineEdit(this);
     grid_layout->addWidget(sn_label, 0, 0);
     grid_layout->addWidget(sn_lineedit, 0, 1);
     /* RN(Register Number) */
-    QLabel *rn_label = new QLabel("Register Number", this);
+    QLabel *rn_label = new QLabel(tr("Register Number"), this);
     rn_lineedit = new QLineEdit(this);
 
     grid_layout->addWidget(rn_label, 1, 0);
@@ -29,8 +29,8 @@ RegisterDialog::RegisterDialog(QWidget *parent) :
     reg_label = new QLabel();
     reg_label->setPixmap(QPixmap(isRegistered() ? ":/images/unlock" : ":/images/lock"));
     QSpacerItem *spacer = new QSpacerItem(20, 40, QSizePolicy::Expanding, QSizePolicy::Minimum);
-    QPushButton *ok_pushbutton = new QPushButton("Register", this);
-    QPushButton *cancel_pushbutton = new QPushButton("Close", this);
+    QPushButton *ok_pushbutton = new QPushButton(tr("Register"), this);
+    QPushButton *cancel_pushbutton = new QPushButton(tr("Close"), this);
     buttons_grid_layout->addWidget(reg_label, 0, 0);
     buttons_grid_layout->addItem(spacer, 0, 1);
     buttons_grid_layout->addWidget(ok_pushbutton, 0,2);

@@ -10,7 +10,6 @@ AboutDialog::AboutDialog()
     ui.closeButtonBox->addButton(new QPushButton("&Close", this),
         QDialogButtonBox::RejectRole);
 
-    setWindowTitle("About");
     setWindowRole("csv2sql-about");
     setMinimumSize(400, 300);
     resize(400, 300);

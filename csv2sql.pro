@@ -41,3 +41,5 @@ RESOURCES += \
     resource.qrc
 
 DEFINES += APP_VERSION=\\\"$${VERSION}\\\"
+
+TRANSLATIONS += lang_zh_CN.ts
