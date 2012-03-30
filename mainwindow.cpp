@@ -60,9 +60,13 @@ void MainWindow::on_action_Start_triggered(bool checked)
     } else {
         qDebug() << "stop ...";
         if (worker.isBusy()) {
-            ui->action_Start->setEnabled(false);
             worker.cancelWorking();
-            ui->action_Start->setEnabled(true);
+            connect(&worker, SIGNAL(workProcessEvent(WorkEvent,WorkStatus*)),
+                    this, SLOT(workProcessEventHandler(WorkEvent,WorkStatus*)));
+            cancel_progress_dialog.setModal(true);
+            cancel_progress_dialog.exec();
+            disconnect(&worker, SIGNAL(workProcessEvent(WorkEvent,WorkStatus*)),
+                       this, SLOT(workProcessEventHandler(WorkEvent,WorkStatus*)));
         }
         db.closeDatabase();
         ui->action_Start->setIcon(QIcon(":/images/start"));
@@ -213,4 +217,11 @@ void MainWindow::on_action_Exit_triggered()
 {
     hide();
     close();
+}
+
+void MainWindow::workProcessEventHandler(WorkEvent event, WorkStatus *status)
+{
+    cancel_progress_dialog.setValue(status->cur_percent * 100);
+    if (event == WorkEventEnd)
+        cancel_progress_dialog.close();
 }

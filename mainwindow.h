@@ -5,8 +5,10 @@
 #include <QTimer>
 #include <QSystemTrayIcon>
 #include <QFileSystemWatcher>
+#include <QProgressDialog>
 
 #include "weathersource.h"
+#include "csv2sqlworker.h"
 
 
 namespace Ui {
@@ -57,6 +59,8 @@ private slots:
 
     void on_action_Exit_triggered();
 
+    void workProcessEventHandler(WorkEvent event, WorkStatus *status);
+
 private:
     Ui::MainWindow *ui;
     QTimer weather_timer;
@@ -72,6 +76,7 @@ private:
     QFileSystemWatcher fs_watcher;
 
     WorkIndicator *indicator;
+    QProgressDialog cancel_progress_dialog;
 };
 
 #endif // MAINWINDOW_H
