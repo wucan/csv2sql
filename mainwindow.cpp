@@ -60,7 +60,9 @@ void MainWindow::on_action_Start_triggered(bool checked)
     } else {
         qDebug() << "stop ...";
         if (worker.isBusy()) {
+            ui->action_Start->setEnabled(false);
             worker.cancelWorking();
+            ui->action_Start->setEnabled(true);
         }
         db.closeDatabase();
         ui->action_Start->setIcon(QIcon(":/images/start"));

@@ -69,9 +69,10 @@ void Csv2SqlWorker::cancelWorking()
         idle = true;
     }
     mutex.unlock();
-    /* FIXME */
-    while (busy)
+    while (busy) {
         usleep(10000);
+        QCoreApplication::processEvents();
+    }
 }
 
 void Csv2SqlWorker::scaning()
