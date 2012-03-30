@@ -95,7 +95,7 @@ void PreferencesDialog::ok()
     settings.setValue("password", SettingsData::inst().db_password);
     settings.endGroup();
 
-    done(0);
+    done(1);
 }
 
 void PreferencesDialog::on_pushButton_csv_path_browse_clicked()

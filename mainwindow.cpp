@@ -107,7 +107,10 @@ void MainWindow::on_action_Prefences_triggered()
 {
     PreferencesDialog dlg;
     dlg.setModal(false);
-    dlg.exec();
+    if (dlg.exec()) {
+        stop();
+        start();
+    }
 }
 
 void MainWindow::weather_timer_timeout()
