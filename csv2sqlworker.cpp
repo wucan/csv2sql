@@ -65,7 +65,9 @@ void Csv2SqlWorker::cancelWorking()
         idle = true;
     }
     mutex.unlock();
-    /* TODO: */
+    /* FIXME */
+    while (busy)
+        usleep(10000);
 }
 
 void Csv2SqlWorker::scaning()
