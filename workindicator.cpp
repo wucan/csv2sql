@@ -16,9 +16,9 @@ WorkIndicator::WorkIndicator(QWidget *parent)
     addAction(quitAction);
 
     setContextMenuPolicy(Qt::ActionsContextMenu);
-    setToolTip(tr("Drag the clock with the left mouse button.\n"
+    setToolTip(tr("Drag the diagram with the left mouse button.\n"
                   "Use the right mouse button to open a context menu."));
-    setWindowTitle(tr("Shaped Analog Clock"));
+    setWindowTitle(tr("Work Status Indicator"));
 }
 
 void WorkIndicator::mousePressEvent(QMouseEvent *event)
