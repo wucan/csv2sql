@@ -42,6 +42,9 @@ MainWindow::MainWindow(QWidget *parent) :
     trayIcon->show();
 
     ui->action_Start->setEnabled(RegisterDialog::isRegistered());
+
+    cancel_progress_dialog.setModal(true);
+    connect(&cancel_progress_dialog, SIGNAL(canceled()), this, SLOT(cancel_progress_diglog_canceled()));
 }
 
 MainWindow::~MainWindow()
@@ -63,8 +66,11 @@ void MainWindow::on_action_Start_triggered(bool checked)
             worker.cancelWorking();
             connect(&worker, SIGNAL(workProcessEvent(WorkEvent,WorkStatus*)),
                     this, SLOT(workProcessEventHandler(WorkEvent,WorkStatus*)));
-            cancel_progress_dialog.setModal(true);
-            cancel_progress_dialog.exec();
+            int rc = cancel_progress_dialog.exec();
+            if (rc == -1) {
+                // user canceled, force break out the working
+                worker.forceCancelWorking();
+            }
             disconnect(&worker, SIGNAL(workProcessEvent(WorkEvent,WorkStatus*)),
                        this, SLOT(workProcessEventHandler(WorkEvent,WorkStatus*)));
         }
@@ -224,4 +230,10 @@ void MainWindow::workProcessEventHandler(WorkEvent event, WorkStatus *status)
     cancel_progress_dialog.setValue(status->cur_percent * 100);
     if (event == WorkEventEnd)
         cancel_progress_dialog.close();
+}
+
+void MainWindow::cancel_progress_diglog_canceled()
+{
+    cancel_progress_dialog.setResult(-1);
+    cancel_progress_dialog.close();
 }

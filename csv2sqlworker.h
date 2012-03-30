@@ -33,11 +33,13 @@ public:
     void run();
     void requestWorking(const QString & path);
     void cancelWorking();
+    void forceCancelWorking();
     void resetState() {
         mutex.lock();
         busy = false;
         idle = false;
         mutex.unlock();
+        force_idle = false;
     }
     bool isBusy() {
         return busy;
@@ -60,6 +62,7 @@ private:
     QMutex mutex;
     bool busy;
     bool idle;
+    bool force_idle;
 
 public:
     WorkStatus status;

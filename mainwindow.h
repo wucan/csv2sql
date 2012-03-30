@@ -60,6 +60,7 @@ private slots:
     void on_action_Exit_triggered();
 
     void workProcessEventHandler(WorkEvent event, WorkStatus *status);
+    void cancel_progress_diglog_canceled();
 
 private:
     Ui::MainWindow *ui;

@@ -19,6 +19,7 @@ Csv2SqlWorker::Csv2SqlWorker(QObject *parent) :
     quit = false;
     busy = false;
     idle = false;
+    force_idle = false;
 }
 
 Csv2SqlWorker::~Csv2SqlWorker()
@@ -69,6 +70,13 @@ void Csv2SqlWorker::cancelWorking()
         idle = true;
     }
     mutex.unlock();
+}
+
+void Csv2SqlWorker::forceCancelWorking()
+{
+    force_idle = true;
+    while (busy)
+        usleep(10000);
 }
 
 void Csv2SqlWorker::scaning()
@@ -133,6 +141,9 @@ void Csv2SqlWorker::processCsvFile(const QString csv_file)
             status.cur_percent = percent;
             emit workProcessEvent(WorkEventTick, &status);
         }
+
+        if (force_idle)
+            break;
     }
 
     /* at last delete the csv file! */
