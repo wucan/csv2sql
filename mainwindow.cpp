@@ -2,6 +2,7 @@
 #include <QTimer>
 #include <QMessageBox>
 #include <QCloseEvent>
+#include <QDesktopWidget>k
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -25,6 +26,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle("CSV2SQL");
     setWindowIcon(QIcon(":/images/logo"));
+    QDesktopWidget *desktop = QApplication::desktop();
+    move((desktop->width() - width()) / 2, (desktop->height() - height()) / 2);
 
     indicator = new WorkIndicator(&worker, this);
     ui->horizontalLayout_status->addWidget(indicator);
