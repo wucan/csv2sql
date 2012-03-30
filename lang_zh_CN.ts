@@ -16,37 +16,37 @@
     <message>
         <location filename="mainwindow.ui" line="63"/>
         <source>&amp;File</source>
-        <translation type="unfinished">文件</translation>
+        <translation type="unfinished">文件(&amp;F)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="70"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished">编辑</translation>
+        <translation type="unfinished">编辑(&amp;E)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="77"/>
         <source>&amp;Help</source>
-        <translation type="unfinished">帮助</translation>
+        <translation type="unfinished">帮助(&amp;H)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="105"/>
         <source>E&amp;xit</source>
-        <translation type="unfinished">退出</translation>
+        <translation type="unfinished">退出(&amp;x)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="114"/>
         <source>&amp;Preferences</source>
-        <translation type="unfinished">设置</translation>
+        <translation type="unfinished">设置(&amp;P)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="123"/>
         <source>&amp;About</source>
-        <translation type="unfinished">关于</translation>
+        <translation type="unfinished">关于(&amp;A)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="135"/>
         <source>&amp;Start</source>
-        <translation type="unfinished">启动</translation>
+        <translation type="unfinished">启动(&amp;S)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="144"/>
@@ -57,7 +57,7 @@
     <message>
         <location filename="mainwindow.ui" line="152"/>
         <source>&amp;Register</source>
-        <translation type="unfinished">注册</translation>
+        <translation type="unfinished">注册(&amp;R)</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="36"/>
@@ -68,22 +68,22 @@
     <message>
         <location filename="mainwindow.cpp" line="130"/>
         <source>Mi&amp;nimize</source>
-        <translation type="unfinished">最小化窗口</translation>
+        <translation type="unfinished">最小化窗口(&amp;n)</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="133"/>
         <source>Ma&amp;ximize</source>
-        <translation type="unfinished">最大化窗口</translation>
+        <translation type="unfinished">最大化窗口(&amp;x)</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="136"/>
         <source>&amp;Restore</source>
-        <translation type="unfinished">恢复窗口</translation>
+        <translation type="unfinished">恢复窗口(&amp;R)</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="139"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished">退出</translation>
+        <translation type="unfinished">退出(&amp;Q)</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="181"/>
